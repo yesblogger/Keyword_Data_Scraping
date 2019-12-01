@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 import time
@@ -21,10 +22,20 @@ class dataFetcher:
             # parsing the keyword into proper format
             keyword_f = '%20'.join(keyword.split(' '))
             # making the search query
-            self.driver.get(
-                f'https://app.neilpatel.com/en/ubersuggest/overview?keyword={keyword_f}&locId=2840&lang=en')
-            # pausing the script for maximum 5 seconds
-            time.sleep(random.randint(2, 5))
+            self.driver.get('https://neilpatel.com/ubersuggest/')
+            # pausing the script for maximum 8 seconds
+            time.sleep(random.randint(4, 8))
+            # selecting the search field
+            search_field = self.driver.find_element_by_xpath(
+                '//input[@class="field-keyword"]')
+            # we will clear the keyword input field
+            search_field.clear()
+            # we will enter the keyword in the input field
+            search_field.send_keys(keyword_f)
+            # pause the program
+            time.sleep(random.randint(2, 4))
+            # hit enter to begin search for the keyword
+            search_field.send_keys(Keys.RETURN)
             # we will wait till volume element is loaded
             volume = self.wait.until(ec.presence_of_element_located(
                 (By.XPATH, '//div[@class="css-1jd9o2h"]/div[1]/div[2]/span'))).get_attribute('textContent')
