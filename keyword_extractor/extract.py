@@ -8,8 +8,11 @@ import random
 
 
 class dataFetcher:
-    # setting up the driver object
-    driver = webdriver.Chrome()
+    options = webdriver.ChromeOptions()
+    options.add_argument("start-maximized")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('useAutomationExtension', False)
+    driver = webdriver.Chrome(options=options)
     wait = WebDriverWait(driver, 60)
 
     def endSession(self):
@@ -20,7 +23,7 @@ class dataFetcher:
     def fetchData(self, keyword, file):
         try:
             # parsing the keyword into proper format
-            keyword_f = '%20'.join(keyword.split(' '))
+            # keyword_f = '%20'.join(keyword.split(' '))
             # making the search query
             self.driver.get('https://neilpatel.com/ubersuggest/')
             # pausing the script for maximum 8 seconds
@@ -31,7 +34,7 @@ class dataFetcher:
             # we will clear the keyword input field
             search_field.clear()
             # we will enter the keyword in the input field
-            search_field.send_keys(keyword_f)
+            search_field.send_keys(keyword)
             # pause the program
             time.sleep(random.randint(2, 4))
             # hit enter to begin search for the keyword
