@@ -1,1 +1,4 @@
 serp_extractor/
+*.txt
+serp_tracker/send_email.py
+*.pyc
