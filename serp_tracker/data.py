@@ -1,5 +1,10 @@
-def api_key():
-    with open("api_key.txt", mode='r') as r_file:
+def search_api():
+    with open("search_api.txt", mode='r') as r_file:
+        return r_file.readline().strip()
+
+
+def email_api():
+    with open("email_api.txt", mode='r') as r_file:
         return r_file.readline().strip()
 
 
