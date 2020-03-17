@@ -1,4 +1,5 @@
 serp_extractor/
 *.txt
 *.pyc
-serp_tracker/Run_SERP_Tracker.bat
+*.bat
+keyword_extractor/.vscode/
